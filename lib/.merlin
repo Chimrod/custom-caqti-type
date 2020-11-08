@@ -1,0 +1,24 @@
+EXCLUDE_QUERY_DIR
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\angstrom
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\bigarray-compat
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\bigstringaf
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\caqti
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\logs
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\ppx_deriving\runtime
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\ptime
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\result
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\stringext
+B D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\uri
+B ../_build/default/lib/.custom_caqti_type.objs/byte
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\angstrom
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\bigarray-compat
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\bigstringaf
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\caqti
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\logs
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\ppx_deriving\runtime
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\ptime
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\result
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\stringext
+S D:\\bin\\cygwin\\home\\sdai\\.opam\\4.10.0\lib\uri
+S .
+FLG -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs

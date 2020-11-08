@@ -1,0 +1,7 @@
+(library
+ (name ppx_caqti)
+ (public_name custom-caqti-type.ppx)
+ (kind ppx_rewriter)
+ (libraries base ppxlib)
+ (preprocess
+  (pps ppx_optcomp ppxlib.metaquot)))

@@ -1,0 +1,5 @@
+(library
+ (name custom_caqti_type)
+ (public_name custom-caqti-type)
+ (libraries caqti)
+)
