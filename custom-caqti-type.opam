@@ -7,7 +7,7 @@ authors: ["Sébastien Dailly"]
 license: "MIT"
 depends: [
   "dune" {>= "2.5"}
-  "ocaml" {>= "4.08.0"}
+  "ocaml" {>= "4.05.0"}
   "caqti" {>= "1.2.1"}
   "ppx_import" {>= "1.7.1"}
   "ppx_optcomp" {>= "0.14.0"}
