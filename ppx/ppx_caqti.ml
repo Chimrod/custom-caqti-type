@@ -1,7 +1,6 @@
-open Migrate_parsetree
-open OCaml_410.Ast
+open Ppxlib
+open Astlib
 
-open Base
 open Parsetree
 
 let is_id_field = function
@@ -52,10 +51,10 @@ let get_attribute
     if String.equal name t.attr_name.txt then
       match t.attr_payload with
       | PStr structure ->
-        begin match List.filter_map structure ~f:(fun f -> match f.pstr_desc with
+        begin match ListLabels.filter_map structure ~f:(fun f -> match f.pstr_desc with
             | Pstr_eval (expr, _) ->
               begin match expr.pexp_desc with
-                | Pexp_constant (Pconst_string (value, _)) -> Some value
+                | Pexp_constant (Pconst_string (value, _, _)) -> Some value
                 | _ -> None
               end
             | _ -> None
@@ -82,7 +81,7 @@ let map_label_to_caqti_t
     let rec map_type_to_caqti
       : Parsetree.core_type -> Parsetree.expression
       = fun core_type ->
-        match List.filter_map declaration.pld_attributes ~f:(get_attribute "type") with
+        match ListLabels.filter_map declaration.pld_attributes ~f:(get_attribute "type") with
         | att::_ ->
           { empty_expression with
             pexp_desc = Pexp_ident { declaration.pld_name with txt = (Lident att)}
@@ -97,7 +96,7 @@ let map_label_to_caqti_t
              string option -> (option string)
           *)
           | Ptyp_constr (loc, params) ->
-            let parameters = List.map
+            let parameters = ListLabels.map
                 ~f:(fun p -> Asttypes.Nolabel, map_type_to_caqti p)
                 params
             in
@@ -159,24 +158,24 @@ let process_decl _rec_flag (decl:type_declaration) =
     and encode_patten:Parsetree.pattern =
       { empty_pattern with
         ppat_desc = Ppat_record
-            ( List.map fields ~f:map_label_to_record_pattern
+            ( ListLabels.map fields ~f:map_label_to_record_pattern
             , Closed )
       }
 
     and encode_expr:Parsetree.expression =
       { empty_expression with
-        pexp_desc = Pexp_tuple (List.map fields ~f:map_label_to_expr)
+        pexp_desc = Pexp_tuple (ListLabels.map fields ~f:map_label_to_expr)
       }
 
     and decode_patten:Parsetree.pattern =
       { empty_pattern with
-        ppat_desc = Ppat_tuple ( List.map fields ~f:map_label_to_pattern )
+        ppat_desc = Ppat_tuple ( ListLabels.map fields ~f:map_label_to_pattern )
       }
 
     and decode_expr:Parsetree.expression =
       { empty_expression with
         pexp_desc = Pexp_record
-            ( List.map fields ~f:map_label_to_record_expr
+            ( ListLabels.map fields ~f:map_label_to_record_expr
             , None)
       }
 
@@ -187,7 +186,7 @@ let process_decl _rec_flag (decl:type_declaration) =
             ( { empty_expression with
                 pexp_desc = Pexp_ident ({loc = loc; txt = Lident call })
               }
-            , (List.map fields ~f:map_label_to_caqti_t)
+            , (ListLabels.map fields ~f:map_label_to_caqti_t)
             )
       }
 
@@ -208,7 +207,7 @@ let process_decl _rec_flag (decl:type_declaration) =
 
 
 let expand_str ~loc:_ ~path:_ (rec_flag, decls) =
-  List.filter_map ~f:(process_decl rec_flag) decls
+  ListLabels.filter_map ~f:(process_decl rec_flag) decls
 
 let str_generator = Ppxlib.Deriving.Generator.make_noarg expand_str
 
